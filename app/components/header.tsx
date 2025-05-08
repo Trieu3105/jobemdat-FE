@@ -1,17 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Dropmenugame from "./dropmenugame";
 import Home from "../auth/login/page";
 import { useUserContext } from "../context/context";
+import { useLoginModal } from "../context/LoginModalContext"; // Import LoginModalContext
 
 export default function Headers() {
-  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const { user, logout } = useUserContext(); // Access user and logout from context
-
-  const toggleLoginModal = () => {
-    setLoginModalOpen(!isLoginModalOpen);
-  };
+  const { isLoginModalOpen, toggleLoginModal } = useLoginModal(); // Use LoginModalContext
 
   return (
     <>

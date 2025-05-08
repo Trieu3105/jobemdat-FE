@@ -1,16 +1,21 @@
+// app/auth/login/page.tsx
+
 "use client";
 
 import React, { useState } from "react";
-import { useUserContext } from "../../context/context";
-import { useRouter } from 'next/navigation'
+import { useUserContext } from "../../context/context"; // Giữ nguyên context này
+import { useLoginModal } from "../../context/LoginModalContext"; // Import context mới để sử dụng modal
 
+interface HomeProps {
+  isLoginModalOpen: boolean;
+  toggleLoginModal: () => void;
+}
 
-export default function Home({ isLoginModalOpen, toggleLoginModal }: { isLoginModalOpen: boolean; toggleLoginModal: () => void }) {
+export default function Home({ isLoginModalOpen, toggleLoginModal }: HomeProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login, user } = useUserContext(); // Use context for login and user state
-  const router = useRouter();
-  
+  const { login } = useUserContext(); // Giữ nguyên
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -30,6 +35,7 @@ export default function Home({ isLoginModalOpen, toggleLoginModal }: { isLoginMo
       }
     }
   };
+
   return (
     <main>
       {/* Login Modal */}
@@ -69,7 +75,6 @@ export default function Home({ isLoginModalOpen, toggleLoginModal }: { isLoginMo
                   type="button"
                   onClick={toggleLoginModal}
                   className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
-                  
                 >
                   Hủy
                 </button>

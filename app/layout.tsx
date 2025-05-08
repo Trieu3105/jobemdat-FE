@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
 import { UserProvider } from "./context/context"; // Import UserProvider
+import { LoginModalProvider } from "./context/LoginModalContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const Headers = dynamic(() => import("./components/header"), { ssr: false });
@@ -24,8 +25,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className} >
         <UserProvider> {/* Wrap the application with UserProvider */}
+        <LoginModalProvider>
           <Headers />
           {children}
+          </LoginModalProvider>
         </UserProvider>
       </body>
     </html>
