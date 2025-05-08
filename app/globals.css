@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 20, 20, 30;
+  --background-end-rgb: 15, 15, 25;
+  --ninja-primary: 25 95% 50%;       /* Màu đỏ ninja */
+  --ninja-accent: 45 95% 55%;        /* Vàng cam */
+  --ninja-bg: 230 15% 10%;           /* Xanh tím than */
+  --ninja-panel: 220 10% 18%;        /* Bảng UI */
+  --ninja-border: 0 0% 30%;          /* Viền xám */
+  --ninja-danger: 0 80% 55%;         /* Màu cảnh báo */
+  --radius: 0.5rem;
+  --ninja-bg-img1: url('/image/bg1.jpg'); 
+  --ninja-bg-img2: url('/image/bg2.jpg'); 
+  --ninja-bg-img3: url('/image/bg3.jpg'); 
+  --ninja-bg-img4: url('/image/bg4.jpg'); 
+  --ninja-bg-img5: url('/image/bg5.jpg'); 
+  --ninja-bg-img6: url('/image/bg6.jpg'); 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 10, 10, 15;
+    --background-end-rgb: 10, 10, 20;
+  }
+}
+
+@layer base {
+  :root {
+    --ninja1: var(--ninja-bg-img1);
+    --ninja2: var(--ninja-bg-img2);
+    --ninja3: var(--ninja-bg-img3);
+    --ninja4: var(--ninja-bg-img4);
+    --ninja5: var(--ninja-bg-img5);
+    --ninja6: var(--ninja-bg-img6);
+    --background: 0 0% 95%;
+    --foreground: 230 15% 10%;
+    --card: 220 10% 18%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 10% 18%;
+    --popover-foreground: 0 0% 95%;
+    --primary: var(--ninja-primary);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 25%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+    --accent: var(--ninja-accent);
+    --accent-foreground: 0 0% 10%;
+    --ninja-bg: var(--ninja-bg);
+    --destructive: var(--ninja-danger);
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--ninja-border);
+    --input: var(--ninja-border);
+    --ring: 0 0% 90%;
+  }
+
+  .dark {
+    --background: var(--ninja1);
+    --foreground: 0 0% 98%;
+    --card: 230 10% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 230 10% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: var(--ninja-primary);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;
+    --accent: var(--ninja-accent);
+    --accent-foreground: 0 0% 10%;
+    --destructive: var(--ninja-danger);
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--ninja-border);
+    --input: var(--ninja-border);
+    --ring: 0 0% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Arial', sans-serif;
+  }
+}
+
+.section-ninja1 {
+  background-image: var(--ninja1);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
