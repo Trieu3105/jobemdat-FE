@@ -6,8 +6,12 @@ import React, { useState } from "react";
 import { useUserContext } from "../../context/context"; // Giữ nguyên context này
 import { useLoginModal } from "../../context/LoginModalContext"; // Import context mới để sử dụng modal
 
-export default function Home() {
-  const { isLoginModalOpen, toggleLoginModal } = useLoginModal(); // Use context directly
+interface HomeProps {
+  isLoginModalOpen: boolean;
+  toggleLoginModal: () => void;
+}
+
+export default function Home({ isLoginModalOpen, toggleLoginModal }: HomeProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useUserContext();
