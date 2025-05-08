@@ -11,7 +11,7 @@ interface HomeProps {
   toggleLoginModal: () => void;
 }
 
-export default function Home({ isLoginModalOpen, toggleLoginModal }: HomeProps) {
+export default function Login({ isLoginModalOpen, toggleLoginModal }: HomeProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useUserContext();

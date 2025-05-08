@@ -2,13 +2,18 @@
 import React from "react";
 import Link from "next/link";
 import Dropmenugame from "./dropmenugame";
-import Home from "../auth/login/page";
+import Login from "../auth/login/page";
 import { useUserContext } from "../context/context";
-import { useLoginModal } from "../context/LoginModalContext"; // Import LoginModalContext
+// import { useLoginModal } from "../context/LoginModalContext"; // Import LoginModalContext
 
-export default function Headers() {
+interface HomeProps {
+  isLoginModalOpen: boolean;
+  toggleLoginModal: () => void;
+}
+
+export default function Home({ isLoginModalOpen, toggleLoginModal }: HomeProps) {
   const { user, logout } = useUserContext(); // Access user and logout from context
-  const { isLoginModalOpen, toggleLoginModal } = useLoginModal(); // Use LoginModalContext
+  // const { isLoginModalOpen, toggleLoginModal } = useLoginModal(); // Use LoginModalContext
 
   return (
     <>
@@ -122,7 +127,7 @@ export default function Headers() {
           </ul>
         </nav>
       </header>
-      <Home
+      <Login
         isLoginModalOpen={isLoginModalOpen}
         toggleLoginModal={toggleLoginModal}
       />
