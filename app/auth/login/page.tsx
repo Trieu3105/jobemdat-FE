@@ -6,22 +6,18 @@ import React, { useState } from "react";
 import { useUserContext } from "../../context/context"; // Giữ nguyên context này
 import { useLoginModal } from "../../context/LoginModalContext"; // Import context mới để sử dụng modal
 
-interface HomeProps {
-  isLoginModalOpen: boolean;
-  toggleLoginModal: () => void;
-}
-
-export default function Home({ isLoginModalOpen, toggleLoginModal }: HomeProps) {
+export default function Home() {
+  const { isLoginModalOpen, toggleLoginModal } = useLoginModal(); // Use context directly
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useUserContext(); // Giữ nguyên
+  const { login } = useUserContext();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(username, password); // Use login function from context
-      setUsername(""); // Clear username input
-      setPassword(""); // Clear password input
+      await login(username, password);
+      setUsername("");
+      setPassword("");
       toggleLoginModal();
     } catch (error) {
       if (error instanceof Error) {
