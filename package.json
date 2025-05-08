@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "@headlessui/react": "2.2.2",
@@ -52,6 +51,7 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",
     "framer-motion": "12.10.0",
+    "i": "^0.3.7",
     "input-otp": "1.2.4",
     "js-cookie": "3.0.5",
     "lucide-react": "0.446.0",

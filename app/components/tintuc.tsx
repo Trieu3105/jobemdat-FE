@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
+import Image from "next/image";
 
 export default function Tintuc() {
   const [featuredPosts, setFeaturedPosts] = useState<any[]>([]);
@@ -39,7 +40,7 @@ export default function Tintuc() {
               key={post.id}
               className="relative hover:scale-105 transition-transform duration-300 cursor-pointer rounded-md"
             >
-              <img
+              <Image
                 src={post.img_url}
                 alt={`Bài viết ${index + 1}`}
                 className="w-full h-64 object-cover rounded-md"
@@ -71,7 +72,7 @@ export default function Tintuc() {
           {slidePosts.map((post) => (
             <SwiperSlide key={post.id}>
               <div className="bg-white/5 rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <img
+                <Image
                   src={post.img_url}
                   alt={post.title}
                   className="w-full h-40 object-cover"

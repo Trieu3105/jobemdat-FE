@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/sidebarmenu"; // Import Sidebar component
+import Image from "next/image";
 
 interface Post {
   id: number;
@@ -47,7 +48,7 @@ export default function Home() {
                   key={post.id}
                   className="border p-4 rounded shadow bg-white/10 backdrop-blur-sm  overflow-hidden hover:scale-105 transition-transform duration-300 cursor-pointer"
                 >
-                  <img
+                  <Image
                     src={post.img_url}
                     alt={post.title}
                     className="w-full h-32 object-cover rounded hover:scale-105 transition-transform duration-300 cursor-pointer"

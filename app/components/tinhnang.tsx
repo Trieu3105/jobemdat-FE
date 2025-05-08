@@ -6,6 +6,7 @@ import {
   Autoplay,
   EffectFade,
 } from "swiper/modules";
+import Image from "next/image";
 
 export default function Tinhnang() {
   const [images, setImages] = useState<string[]>([]);
@@ -73,7 +74,7 @@ export default function Tinhnang() {
           >
             {images.map((url, index) => (
               <SwiperSlide key={index}>
-                <img
+                <Image
                   src={url}
                   alt={`Slide ${index + 1}`}
                   className="w-full h-96 object-cover rounded-md"

@@ -1,3 +1,7 @@
+import Image from "next/image";
+
+
+
 export default function Nhanvat() {
   return (
     <main className="bg-gray-700 text-black font-sans">
@@ -6,7 +10,7 @@ export default function Nhanvat() {
         <div className="relative flex justify-center">
           {/* Right: image preview */}
           <div className="relative w-full max-w-2xl h-auto z-10">
-            <img
+            <Image
               src="/image/icon/bow.webp"
               alt="Bow Weapon"
               className="object-cover h-full rounded-lg shadow-lg"
@@ -20,8 +24,8 @@ export default function Nhanvat() {
             <span className="bg-red-950 text-white p-4 mt-4 block">
               <h3 className="text-3xl font-bold mb-3 tracking-widest">BOW</h3>
               <p className="text-sm leading-relaxed">
-                A ranged weapon with a lengthy presence upon history's
-                battlefields. In fact, many in Eternia are surnamed 'Fletcher'
+                A ranged weapon with a lengthy presence upon history&#39;s
+                battlefields. In fact, many in Eternia are surnamed &#39;Fletcher&#39;
                 due to the booming trade their ancestors dealt in.
               </p>
             </span>

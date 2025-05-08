@@ -5,6 +5,7 @@ import axios from "axios";
 import { Dialog } from "@headlessui/react";
 import { useUserContext } from "../context/context";
 import Sidebarmenu from "../components/sidebarmenu";
+import Image from "next/image";
 
 interface Item {
   id: number;
@@ -140,7 +141,7 @@ export default function Home() {
                                     maxHeight: "40px",
                                   }}
                                 >
-                                  <img
+                                  <Image
                                     src={"/image/icon/Small493.png"}
                                     width={110}
                                     height={110}
@@ -181,7 +182,7 @@ export default function Home() {
                                     maxHeight: "50px",
                                   }}
                                 >
-                                  <img
+                                  <Image
                                     src={"/image/icon/Small3225.png"}
                                     width={110}
                                     height={110}
@@ -220,7 +221,7 @@ export default function Home() {
                                     maxHeight: "50px",
                                   }}
                                 >
-                                  <img
+                                  <Image
                                     src={"/image/icon/Small7085.png"}
                                     width={110}
                                     height={110}
@@ -259,7 +260,7 @@ export default function Home() {
                                   >
                                     <div className="p-1 rounded-xl max-w-[70px] max-h-[70px]">
                                       {item.icon ? (
-                                        <img
+                                        <Image
                                           src={`/image/icon/Small${item.icon}.png`}
                                           alt={item.name}
                                           className="object-cover hover:scale-105 transition-transform duration-300 max-h-[40px] w-[40px] h-[35px]"
@@ -304,7 +305,7 @@ export default function Home() {
                 {selectedItem && (
                   <Dialog.Panel className="relative text-left rtl:text-right flex flex-col overflow-visible  dark:bg-gray-900 shadow-xl w-full rounded-lg sm:my-8 max-w-[220px] sm:max-w-[220px]">
                     <div className="flex flex-col items-center pt-5 h-[120px] ">
-                      <img
+                      <Image
                         src={`/image/icon/Small${selectedItem.icon}.png`}
                         alt={selectedItem.name}
                         className="object-cover max-h-[70px] w-[60px] h-[50px] rounded-lg hover:scale-105 transition-transform duration-300"

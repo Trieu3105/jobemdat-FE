@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
- 
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  images: { unoptimized: true },
-};
-
-// module.exports = nextConfig; output: 'export',
+    images: {
+      unoptimized: true, // nếu bạn không dùng Image Optimization
+    },
+  };
+  
+  module.exports = nextConfig;
+  

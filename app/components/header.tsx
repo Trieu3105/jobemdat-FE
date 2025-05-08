@@ -5,6 +5,7 @@ import Dropmenugame from "./dropmenugame";
 import Login from "../auth/login/page";
 import { useUserContext } from "../context/context";
 import { useLoginModal } from "../context/LoginModalContext";
+import Image from 'next/image';
 
 export default function Home() {
   const { user, logout } = useUserContext();
@@ -16,7 +17,7 @@ export default function Home() {
         {/* Logo */}
         <div className="py-2 lg:ml-24 ">
           <Link href="/" className="flex items-center space-x-2">
-            <img
+            <Image
               src="/image/banner1.jpg"
               alt="NSO Logo"
               className="h-10 w-auto object-cover"

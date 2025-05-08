@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
 export default function Slide() {
   const handleVideoError = () => {
@@ -28,7 +29,7 @@ export default function Slide() {
         {/* Content */}
         <div className="absolute left-[100px] bottom-[100px] z-10  flex flex-col justify-center items-center bg-opacity-75 text-4xl sm:text-5xl lg:text-6xl font-bold">
           <div className="w-full max-w-md  bg-opacity-50 rounded-lg shadow-lg">
-            <img
+            <Image
               src="./image/banner1.jpg"
               alt="NSO Logo"
               className="object-cover h-auto mb-4"

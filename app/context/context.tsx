@@ -6,6 +6,7 @@ import React, {
   useState,
   useEffect,
   ReactNode,
+  useCallback, // Import useCallback
 } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -73,7 +74,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const authenticate = async (): Promise<boolean> => {
+  const authenticate = useCallback(async (): Promise<boolean> => {
     if (!token) return false;
 
     try {
@@ -96,7 +97,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     Cookies.remove("access_token");
     localStorage.removeItem("user");
     return false;
-  };
+  }, [token]); // Add 'token' as a dependency
 
   const login = async (username: string, password: string) => {
     try {
@@ -125,7 +126,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) setUser(JSON.parse(storedUser));
     authenticate(); // Gọi authenticate luôn, nếu có token nó sẽ xử lý
-  }, []);
+  }, [authenticate]); // Add 'authenticate' to the dependency array
 
   return (
     <UserContext.Provider

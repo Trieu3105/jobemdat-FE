@@ -1,5 +1,6 @@
 import React from "react";
 import { QrBankingResponse } from "@/app/payments/page";
+import Image from "next/image";
 
 interface ModalVietQRProps {
   isOpen: boolean;
@@ -71,7 +72,7 @@ const ModalVietQR: React.FC<ModalVietQRProps> = ({
         </table>
 
         {qrCodeUrl && (
-          <img
+          <Image
             src={qrCodeUrl}
             alt="QR code"
             loading="lazy"

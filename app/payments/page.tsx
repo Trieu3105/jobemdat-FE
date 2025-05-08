@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation"; // Import router for redirection
-import { useUserContext } from "../context/context"; 
+import { useUserContext } from "../context/context";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import LoginModal from "../auth/login/page";     
+import LoginModal from "../auth/login/page";
+import Image from "next/image";
 import {
   Select,
   SelectContent,
@@ -16,7 +17,7 @@ import {
 } from "@/components/ui/select";
 import axios from "axios";
 import Sidebarmenu from "../components/sidebarmenu";
-import PaymentModal from "../components/paymodal"; 
+import PaymentModal from "../components/paymodal";
 import { v4 as uuidv4 } from "uuid";
 
 export interface BankInfo {
@@ -33,11 +34,11 @@ export interface QrBankingResponse {
 export default function PaymentPage() {
   const [method, setMethod] = useState("bank");
   const [amount, setAmount] = useState("");
-  const [bonus, setBonus] = useState(10); 
+  const [bonus, setBonus] = useState(10);
   const [qrData, setQrData] = useState<QrBankingResponse | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
-  const [transactionCode, setTransactionCode] = useState(""); 
-  const [selectedBank, setSelectedBank] = useState(""); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [transactionCode, setTransactionCode] = useState("");
+  const [selectedBank, setSelectedBank] = useState("");
   const { user } = useUserContext(); // Access user from context
   const router = useRouter(); // Initialize router
 
@@ -48,7 +49,7 @@ export default function PaymentPage() {
   }, [user, router]);
 
   const handleAmountChange = (e: any) => {
-    const value = e.target.value.replace(/\D/g, ""); 
+    const value = e.target.value.replace(/\D/g, "");
     setAmount(value);
   };
 
@@ -92,7 +93,9 @@ export default function PaymentPage() {
       if (error.response) {
         console.error("Chi tiết lỗi từ server:", error.response.data);
         if (error.response.status === 403) {
-          alert("Bạn không có quyền thực hiện giao dịch này. Vui lòng kiểm tra lại.");
+          alert(
+            "Bạn không có quyền thực hiện giao dịch này. Vui lòng kiểm tra lại."
+          );
         }
       } else {
         alert("Giao dịch thất bại. Vui lòng thử lại sau.");
@@ -163,7 +166,7 @@ export default function PaymentPage() {
                 <SelectContent className="bg-white text-black">
                   <SelectItem value="Agribank">
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
                         src="/image/Icon-Agribank.webp"
                         alt="Agribank"
                         width={24}
@@ -174,7 +177,7 @@ export default function PaymentPage() {
                   </SelectItem>
                   <SelectItem value="Vietcombank">
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
                         src="/image/vietcom.png"
                         alt="Vietcombank"
                         width={24}
