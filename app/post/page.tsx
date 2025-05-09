@@ -51,6 +51,8 @@ export default function Home() {
                   <Image
                     src={post.img_url}
                     alt={post.title}
+                    width={500} // Add width
+                    height={750} // Add height
                     className="w-full h-32 object-cover rounded hover:scale-105 transition-transform duration-300 cursor-pointer"
                   />
                   <h3
@@ -66,7 +68,9 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <button className="bg-white p-2 my-4 w-full mx-auto">xem them</button>
+            <button className="bg-white p-2 my-4 w-full mx-auto">
+              xem them
+            </button>
           </section>
         </div>
       </div>

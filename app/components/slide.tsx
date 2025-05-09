@@ -32,6 +32,8 @@ export default function Slide() {
             <Image
               src="./image/banner1.jpg"
               alt="NSO Logo"
+              width={500} // Add width
+                          height={750} // Add height
               className="object-cover h-auto mb-4"
             />
           </div>

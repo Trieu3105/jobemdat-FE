@@ -1,10 +1,12 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Pagination } from "swiper/modules";
 import Image from "next/image";
+import { fadeInDown } from "./motionVariants";
+import { motion } from "framer-motion";
 
 export default function Tintuc() {
   const [featuredPosts, setFeaturedPosts] = useState<any[]>([]);
@@ -13,7 +15,9 @@ export default function Tintuc() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/posts`
+        );
         const data = await response.json();
         if (data.success) {
           const sortedPosts = data.contentData
@@ -33,7 +37,9 @@ export default function Tintuc() {
     <main className="min-h-screen text-white py-16 lg:px-16 px-6 bg-[image:var(--ninja1)] bg-cover bg-no-repeat bg-center">
       {/* Bài viết nổi bật */}
       <div className="mb-8">
-        <h2 className="text-4xl font-bold text-center mb-4 uppercase">Bài viết nổi bật</h2>
+        <h2 className="text-4xl font-bold text-center mb-4 uppercase">
+          Bài viết nổi bật
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {featuredPosts.map((post, index) => (
             <div
@@ -43,6 +49,8 @@ export default function Tintuc() {
               <Image
                 src={post.img_url}
                 alt={`Bài viết ${index + 1}`}
+                width={500} // Add width
+                height={750} // Add height
                 className="w-full h-64 object-cover rounded-md"
               />
               <div className="absolute bottom-0 left-0 w-full bg-red-700 text-white rounded-b-md text-center py-2 font-semibold">
@@ -54,8 +62,15 @@ export default function Tintuc() {
       </div>
 
       {/* Slide bài viết */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4 text-center uppercase">Tin tức</h2>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        // viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInDown}
+      >
+        <h2 className="text-2xl font-bold mb-4 text-center uppercase">
+          Tin tức
+        </h2>
         <Swiper
           spaceBetween={20}
           slidesPerView={4}
@@ -67,7 +82,6 @@ export default function Tintuc() {
             1024: { slidesPerView: 4 },
           }}
           modules={[Pagination]}
-        
         >
           {slidePosts.map((post) => (
             <SwiperSlide key={post.id}>
@@ -75,17 +89,21 @@ export default function Tintuc() {
                 <Image
                   src={post.img_url}
                   alt={post.title}
+                  width={500} // Add width
+                  height={750} // Add height
                   className="w-full h-40 object-cover"
                 />
                 <div className="p-2 text-sm">
                   <p className="font-medium text-left truncate">{post.title}</p>
-                  <p className="font-medium text-left truncate">{post.sub_title}</p>
+                  <p className="font-medium text-left truncate">
+                    {post.sub_title}
+                  </p>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </motion.div>
     </main>
   );
 }

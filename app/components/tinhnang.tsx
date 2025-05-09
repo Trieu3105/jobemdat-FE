@@ -2,11 +2,10 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import {
-  Autoplay,
-  EffectFade,
-} from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { fadeInRight } from "./motionVariants";
 
 export default function Tinhnang() {
   const [images, setImages] = useState<string[]>([]);
@@ -64,12 +63,22 @@ export default function Tinhnang() {
         </div>
 
         {/* Slide hình ảnh bên phải */}
-        <div className="lg:w-1/2 overflow-hidden max-w-full">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          // viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInRight}
+          className="lg:w-1/2 overflow-hidden max-w-full"
+        >
           <Swiper
-            modules={[Autoplay, EffectFade]}
-            autoplay={{ delay: 3000 }}
-            effect="fade"
+            modules={[Autoplay]}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
             loop={true}
+            effect="slide" // Đảm bảo hiệu ứng trượt
+            speed={1000}
             className="relative w-full h-full"
           >
             {images.map((url, index) => (
@@ -77,12 +86,14 @@ export default function Tinhnang() {
                 <Image
                   src={url}
                   alt={`Slide ${index + 1}`}
+                  width={500} // Add width
+                  height={750} // Add height
                   className="w-full h-96 object-cover rounded-md"
                 />
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </motion.div>
       </div>
     </main>
   );

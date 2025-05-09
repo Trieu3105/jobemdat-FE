@@ -13,6 +13,8 @@ export default function Nhanvat() {
             <Image
               src="/image/icon/bow.webp"
               alt="Bow Weapon"
+              width={500} // Add width
+                          height={750} // Add height
               className="object-cover h-full rounded-lg shadow-lg"
             />
           </div>

@@ -26,7 +26,7 @@ export default function Home() {
               { label: "Nạp Tiền", href: "/payments" },
               { label: "Đổi Lượng", href: "/" },
               { label: "GiftCode", href: "/giftcode" },
-              { label: "GiftCode", href: "/giftcode" },
+              { label: "Vòng Quay", href: "/" },
             ]}
           />
           <SidebarItem
