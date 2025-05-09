@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, {
   createContext,
@@ -103,7 +103,13 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await axiosInstance.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/login`,
-        { username, password }
+        { username, password },
+        {
+          withCredentials: true, // BẮT BUỘC nếu dùng cookie
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
 
       if (response.status === 200) {
