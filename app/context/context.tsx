@@ -79,7 +79,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       const response = await axiosInstance.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/profile`,
+        `${process.env.NEXT_PUBLIC_API_URL}/middleware/auth`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
