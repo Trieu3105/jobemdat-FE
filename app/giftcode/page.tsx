@@ -88,10 +88,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="bg-[image:var(--ninja1)] min-h-screen bg-cover bg-no-repeat bg-center p-4">
-      <div className="lg:mt-16 mx-auto max-w-7xl px-4  sm:px-6 lg:px-8 min-h-screen flex flex-row gap-4">
-        <div>
-          {/* Sidebar component */}
+    <main className="section-ninja1 p-4">
+      <div className="lg:mt-16 mx-auto max-w-7xl px-4  sm:px-6 lg:px-8 flex flex-row gap-4">
+        {/* Sidebar component ẩn trên mobile */}
+        <div className="">
           <Sidebarmenu />
         </div>
         {/* Nội dung */}
@@ -103,9 +103,9 @@ export default function Home() {
             <p>Loading...</p>
           ) : (
             <div className="transition-opacity duration-300 opacity-100 ">
-              <div className="overflow-visible rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow  dark:bg-gray-900">
-                <table className="min-w-full table-auto divide-y divide-gray-300 dark:divide-gray-700 overflow-hidden">
-                  <thead>
+              <div className="overflow-visible rounded-lg divide-y  divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow  dark:bg-gray-900">
+                <table className="min-w-full overflow-x-auto table-auto divide-y  divide-gray-300 dark:divide-gray-700 overflow-hidden">
+                  <thead className="divide-x divide-gray-200">
                     <tr>
                       <th className="text-center lg:w-[100px] px-3 py-3.5 font-semibold text-sm">
                         Máy chủ
@@ -118,7 +118,7 @@ export default function Home() {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-800 max-h-[9rem] overflow-y-auto">
                     {giftCodes.length > 0 ? (
                       giftCodes.map((giftCode) => (
                         <tr key={giftCode.id}>
@@ -128,7 +128,7 @@ export default function Home() {
                           <td className="px-3 py-4 text-gray-300 text-sm font-semibold">
                             {giftCode.code}
                           </td>
-                          <td className="px-3 py-4 text-gray-500 text-sm">
+                          <td  className="px-3 py-4 text-gray-500 text-sm ">
                             <div className="flex flex-wrap gap-1">
                               <div className="relative inline-block transition-all hover:ring ring-primary-500 dark:hover:ring-primary-400 cursor-pointer rounded-xl">
                                 {/* Container của ảnh */}

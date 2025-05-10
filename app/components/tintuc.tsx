@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { fadeInDown } from "./motionVariants";
 import { motion } from "framer-motion";
@@ -34,13 +34,47 @@ export default function Tintuc() {
   }, []);
 
   return (
-    <main className="min-h-screen text-white py-16 lg:px-16 px-6 bg-[image:var(--ninja1)] bg-cover bg-no-repeat bg-center">
+    <main className=" text-primary py-16 lg:px-16 px-6 section-ninja1 bg-cover bg-no-repeat bg-center">
       {/* Bài viết nổi bật */}
       <div className="mb-8">
         <h2 className="text-4xl font-bold text-center mb-4 uppercase">
           Bài viết nổi bật
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        {/* Swiper - chỉ hiển thị ở mobile */}
+        <div className="block md:hidden">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            pagination={{ clickable: true }}
+            spaceBetween={16}
+            slidesPerView={1}
+            className="w-full"
+          >
+            {featuredPosts.map((post, index) => (
+              <SwiperSlide key={post.id}>
+                <div className="relative cursor-pointer rounded-md">
+                  <Image
+                    src={post.img_url}
+                    alt={`Bài viết ${index + 1}`}
+                    width={500}
+                    height={750}
+                    className="w-full h-64 object-cover rounded-md"
+                  />
+                  <div className="absolute bottom-0 left-0 w-full bg-red-700 text-white rounded-b-md text-center py-2 font-semibold">
+                    {post.title}
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Grid layout - chỉ hiển thị ở desktop và tablet */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-4">
           {featuredPosts.map((post, index) => (
             <div
               key={post.id}
@@ -49,8 +83,8 @@ export default function Tintuc() {
               <Image
                 src={post.img_url}
                 alt={`Bài viết ${index + 1}`}
-                width={500} // Add width
-                height={750} // Add height
+                width={500}
+                height={750}
                 className="w-full h-64 object-cover rounded-md"
               />
               <div className="absolute bottom-0 left-0 w-full bg-red-700 text-white rounded-b-md text-center py-2 font-semibold">
@@ -61,38 +95,41 @@ export default function Tintuc() {
         </div>
       </div>
 
-      {/* Slide bài viết */}
+      {/* Slide tin tức */}
       <motion.div
         initial="hidden"
         whileInView="visible"
         // viewport={{ once: true, amount: 0.2 }}
         variants={fadeInDown}
       >
-        <h2 className="text-2xl font-bold mb-4 text-center uppercase">
+        <h2 className="text-2xl  font-bold mb-4 text-center uppercase">
           Tin tức
         </h2>
         <Swiper
           spaceBetween={20}
-          slidesPerView={4}
+          slidesPerView={1}
           pagination={{ clickable: true }}
           loop={true}
           breakpoints={{
             640: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
+            768: { slidesPerView: 1 },
             1024: { slidesPerView: 4 },
           }}
           modules={[Pagination]}
         >
           {slidePosts.map((post) => (
             <SwiperSlide key={post.id}>
-              <div className="bg-white/5 rounded-md overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer">
-                <Image
-                  src={post.img_url}
-                  alt={post.title}
-                  width={500} // Add width
-                  height={750} // Add height
-                  className="w-full h-40 object-cover"
-                />
+              <div className="bg-black/20 rounded-md text-white overflow-hidden shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer">
+                {/* Wrapper để giữ chiều cao cố định */}
+                <div className="w-full h-44 overflow-hidden">
+                  <Image
+                    src={post.img_url}
+                    alt={post.title}
+                    width={500}
+                    height={750}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="p-2 text-sm">
                   <p className="font-medium text-left truncate">{post.title}</p>
                   <p className="font-medium text-left truncate">

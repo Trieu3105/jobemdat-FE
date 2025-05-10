@@ -108,155 +108,156 @@ export default function PaymentPage() {
   }
 
   return (
-    <main className="lg:mt-16 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-screen flex flex-row gap-4">
-      <div>
-        <Sidebarmenu />
-      </div>
-
-      <div className="flex justify-center items-start w-full">
-        <div className="max-w-xl w-full space-y-6">
-          {/* Bước 1: Chọn phương thức */}
-          <Card className="p-4 space-y-2 bg-white">
-            <h2 className="text-lg font-semibold text-green-600">
-              1. Chọn phương thức nạp
-            </h2>
-            <div className="flex gap-4">
-              <button
-                className={`flex-1 p-3 border rounded ${
-                  method === "bank"
-                    ? "bg-green-100 border-green-500"
-                    : "border-gray-300"
-                }`}
-                onClick={() => setMethod("bank")}
-              >
-                <div className="font-medium text-black">Ngân Hàng</div>
-                <div className="text-xs text-gray-500">Không giới hạn</div>
-              </button>
-              <button
-                className={`flex-1 p-3 border rounded ${
-                  method === "card"
-                    ? "bg-green-100 border-green-500"
-                    : "border-gray-300"
-                }`}
-                onClick={() => setMethod("card")}
-              >
-                <div className="font-medium text-black">Thẻ Cào</div>
-                <div className="text-xs text-gray-500">
-                  Tối đa: 1,000,000 VND
-                </div>
-              </button>
-            </div>
-          </Card>
-
-          {/* Bước 2: Nhập thông tin */}
-          <Card className="p-4 space-y-3 bg-white">
-            <h2 className="text-lg font-semibold text-green-600">
-              2. Nhập thông tin thanh toán
-            </h2>
-
-            {/* Chọn Ngân Hàng */}
-            <div>
-              <label className="text-sm mb-1 block text-black">
-                Chọn Ngân Hàng
-              </label>
-              <Select onValueChange={setSelectedBank}>
-                <SelectTrigger className="w-full text-black">
-                  <SelectValue placeholder="Chọn ngân hàng" />
-                </SelectTrigger>
-                <SelectContent className="bg-white text-black">
-                  <SelectItem value="Agribank">
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src="/image/Icon-Agribank.webp"
-                        alt="Agribank"
-                        width={24}
-                        height={24}
-                      />
-                      Agribank
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="Vietcombank">
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src="/image/vietcom.png"
-                        alt="Vietcombank"
-                        width={24}
-                        height={24}
-                      />
-                      Vietcombank
-                    </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <label className="text-sm mb-1  block text-black">
-                Số tiền nạp
-              </label>
-              <Input
-                placeholder="Nhập số tiền"
-                value={amount}
-                onChange={handleAmountChange}
-                className="text-black"
-              />
-              <p className="text-xs text-black mt-1">
-                Min: 10,000 - Max: Không giới hạn
-              </p>
-            </div>
-
-            <div>
-              <label className="text-sm mb-1 block text-black">
-                Khuyến mãi
-              </label>
-              <Input value={`+${bonus}%`} readOnly className="text-black" />
-            </div>
-
-            <div>
-              <label className="text-sm mb-1 block text-black">
-                Số tiền nhận được
-              </label>
-              <Input
-                value={`${calculateTotal().toLocaleString()} VND`}
-                readOnly
-                className="text-black"
-              />
-            </div>
-            <Card className="p-4 bg-white">
+    <main className="section-ninja1 min-h-screen bg-current p-4">
+      <div className="lg:pt-16 mx-auto max-w-7xl px-4 md:mt-20 sm:mt-20 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-6">
+        <div>
+          <Sidebarmenu />
+        </div>
+        <div className="flex justify-center items-start w-full">
+          <div className="max-w-xl w-full space-y-6">
+            {/* Bước 1: Chọn phương thức */}
+            <Card className="p-4 space-y-2 bg-white">
               <h2 className="text-lg font-semibold text-green-600">
-                Xác nhận giao dịch
+                1. Chọn phương thức nạp
               </h2>
-              <div className="mt-4 flex justify-between">
-                <Button variant="outline" className="text-black">
-                  Lịch sử
-                </Button>
-                <Button
-                  onClick={handleConfirmPayment}
-                  disabled={!selectedBank || !amount}
-                  className={`bg-orange-500 hover:bg-orange-600 text-white ${
-                    !selectedBank || !amount
-                      ? "opacity-50 cursor-not-allowed"
-                      : ""
+              <div className="flex gap-4">
+                <button
+                  className={`flex-1 p-3 border rounded ${
+                    method === "bank"
+                      ? "bg-green-100 border-green-500"
+                      : "border-gray-300"
                   }`}
+                  onClick={() => setMethod("bank")}
                 >
-                  ✓ Xác nhận thanh toán
-                </Button>
+                  <div className="font-medium text-black">Ngân Hàng</div>
+                  <div className="text-xs text-gray-500">Không giới hạn</div>
+                </button>
+                <button
+                  className={`flex-1 p-3 border rounded ${
+                    method === "card"
+                      ? "bg-green-100 border-green-500"
+                      : "border-gray-300"
+                  }`}
+                  onClick={() => setMethod("card")}
+                >
+                  <div className="font-medium text-black">Thẻ Cào</div>
+                  <div className="text-xs text-gray-500">
+                    Tối đa: 1,000,000 VND
+                  </div>
+                </button>
               </div>
             </Card>
-          </Card>
 
-          {/* Bước 3: Xác nhận */}
+            {/* Bước 2: Nhập thông tin */}
+            <Card className="p-4 space-y-3 bg-white">
+              <h2 className="text-lg font-semibold text-green-600">
+                2. Nhập thông tin thanh toán
+              </h2>
+
+              {/* Chọn Ngân Hàng */}
+              <div>
+                <label className="text-sm mb-1 block text-black">
+                  Chọn Ngân Hàng
+                </label>
+                <Select onValueChange={setSelectedBank}>
+                  <SelectTrigger className="w-full text-black">
+                    <SelectValue placeholder="Chọn ngân hàng" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white text-black">
+                    <SelectItem value="Agribank">
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src="/image/Icon-Agribank.webp"
+                          alt="Agribank"
+                          width={24}
+                          height={24}
+                        />
+                        Agribank
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="Vietcombank">
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src="/image/vietcom.png"
+                          alt="Vietcombank"
+                          width={24}
+                          height={24}
+                        />
+                        Vietcombank
+                      </div>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div>
+                <label className="text-sm mb-1  block text-black">
+                  Số tiền nạp
+                </label>
+                <Input
+                  placeholder="Nhập số tiền"
+                  value={amount}
+                  onChange={handleAmountChange}
+                  className="text-black"
+                />
+                <p className="text-xs text-black mt-1">
+                  Min: 10,000 - Max: Không giới hạn
+                </p>
+              </div>
+
+              <div>
+                <label className="text-sm mb-1 block text-black">
+                  Khuyến mãi
+                </label>
+                <Input value={`+${bonus}%`} readOnly className="text-black" />
+              </div>
+
+              <div>
+                <label className="text-sm mb-1 block text-black">
+                  Số tiền nhận được
+                </label>
+                <Input
+                  value={`${calculateTotal().toLocaleString()} VND`}
+                  readOnly
+                  className="text-black"
+                />
+              </div>
+              <Card className="p-4 bg-white">
+                <h2 className="text-lg font-semibold text-green-600">
+                  Xác nhận giao dịch
+                </h2>
+                <div className="mt-4 flex justify-between">
+                  <Button variant="outline" className="text-black">
+                    Lịch sử
+                  </Button>
+                  <Button
+                    onClick={handleConfirmPayment}
+                    disabled={!selectedBank || !amount}
+                    className={`bg-orange-500 hover:bg-orange-600 text-white ${
+                      !selectedBank || !amount
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
+                  >
+                    ✓ Xác nhận thanh toán
+                  </Button>
+                </div>
+              </Card>
+            </Card>
+
+            {/* Bước 3: Xác nhận */}
+          </div>
         </div>
-      </div>
 
-      {/* Modal Hiển thị khi nhấn xác nhận thanh toán */}
-      <PaymentModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        qrData={qrData}
-        amount={parseInt(amount, 10)}
-        transactionCode={transactionCode} // Pass transactionCode to the modal
-      />
+        {/* Modal Hiển thị khi nhấn xác nhận thanh toán */}
+        <PaymentModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          qrData={qrData}
+          amount={parseInt(amount, 10)}
+          transactionCode={transactionCode} // Pass transactionCode to the modal
+        />
+      </div>
     </main>
   );
 }

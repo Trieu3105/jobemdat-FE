@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="bg-white/10 backdrop-blur-sm rounded-md p-4">
+    <main className="bg-white/10 backdrop-blur-sm rounded-md  hidden lg:block">
       <div className="text-center ">
         <div className="flex flex-col items-center w-full justify-center mb-1">
           <Link
@@ -40,8 +40,10 @@ export default function Home() {
           <SidebarItem
             title="Xếp Hạng"
             subMenuItems={[
+              { label: "Vinh danh ", href: "/ranking" },
               { label: "Cao Thủ", href: "/ranking/caothu" },
               { label: "Gia Tộc", href: "/ranking/giatoc" },
+              
             ]}
           />
           <SidebarItem

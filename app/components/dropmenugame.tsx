@@ -7,7 +7,7 @@ export default function Dropmenugame() {
       <li className="relative ">
         <Link
           href="/post"
-          className="hover:bg-white/10 px-4 py-2 rounded transition-all inline-block"
+          className="rounded transition-all inline-block"
         >
           Game
         </Link>

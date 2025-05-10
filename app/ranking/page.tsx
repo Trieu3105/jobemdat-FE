@@ -69,11 +69,11 @@ export default function Top3Ranking() {
                 return (
                   <div
                     key={player.id}
-                    className={`relative w-full aspect-[3/4] rounded-xl overflow-hidden shadow-lg transition-all duration-300 ${
-                      index === 1 ? "scale-110 z-20 -mb-8" : "scale-95 z-10"
-                    } bg-card`}
+                    className={`relative w-full aspect-[3/4] rounded-lg  overflow-hidden shadow-lg transition-all duration-300 ${
+                      index === 1 ? "scale-125 z-60 mb-8" : "scale-90 z-70"
+                    } `}
                   >
-                    <div className="relative w-full h-full">
+                    <div className="relative w-full h-full mx-2">
                       {/* Background Image */}
                       <Image
                         src="/image/bg3.png" // Đảm bảo đường dẫn đúng
@@ -94,7 +94,7 @@ export default function Top3Ranking() {
                         </div>
                       </div>
                     </div>
-                    <div className="absolute top-2 left-2 bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                    <div className="absolute top-2 left-2 bg-primary text-primary-foreground rounded-lg w-6 h-6 flex items-center justify-center text-xs font-bold">
                       {actualRank}
                     </div>
                   </div>
@@ -103,35 +103,57 @@ export default function Top3Ranking() {
             </div>
 
             {/* Content table player ranking */}
-            <section className="w-full lg:w-auto py-10">
+            <section className="w-full lg:w-auto py-10 rounded-lg">
               <div className="transition-opacity duration-300 opacity-100 bg-white/10 backdrop-blur-sm rounded-lg p-4">
                 <h2 className="text-3xl text-center text-primary font-bold mb-4">
                   Bảng Xếp Hạng Người Chơi
                 </h2>
-                <table className="table-auto w-full text-center text-sm">
-                  <thead className="text-white text-xl">
-                    <tr>
-                      <th className="px-4 py-2">Rank</th>
-                      <th className="px-4 py-2">Name</th>
-                      <th className="px-4 py-2">Chiến Lực</th>
-                      <th className="px-4 py-2">Level</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-gray-400 text-center text-lg">
-                    {topThree.map((player, index) => (
-                      <tr key={player.id} className="border-t border-gray-700">
-                        <td className="px-4 py-2">TOP {index + 1}</td>
-                        <td className="px-4 py-2">
-                          {player.name || "Unknown"}
-                        </td>
-                        <td className="px-4 py-2">1 triệu</td>
-                        <td className="px-4 py-2">
-                          {player.playerLevel || "N/A"}
-                        </td>
+                <div className="lg:hidden">
+                  {topThree.map((player, index) => (
+                    <div
+                      key={player.id}
+                      className="text-gray-800 p-4 rounded-lg mb-4 shadow-md bg-white/70"
+                    >
+                      <h3 className="font-bold text-xl">
+                        TOP {index + 1}: {player.name || "Unknown"}
+                      </h3>
+                      <p className="text-sm">Chiến Lực: 1 triệu</p>
+                      <p className="text-sm">
+                        Level: {player.playerLevel || "N/A"}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="hidden lg:block">
+                  <table className="table-auto w-full text-center text-sm">
+                    <thead className="text-white text-xl">
+                      <tr>
+                        <th className="px-4 py-2">Rank</th>
+                        <th className="px-4 py-2">Name</th>
+                        <th className="px-4 py-2">Chiến Lực</th>
+                        <th className="px-4 py-2">Level</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="text-gray-400 text-center text-lg">
+                      {topThree.map((player, index) => (
+                        <tr
+                          key={player.id}
+                          className="border-t border-gray-700"
+                        >
+                          <td className="px-4 py-2">TOP {index + 1}</td>
+                          <td className="px-4 py-2">
+                            {player.name || "Unknown"}
+                          </td>
+                          <td className="px-4 py-2">1 triệu</td>
+                          <td className="px-4 py-2">
+                            {player.playerLevel || "N/A"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </section>
           </section>

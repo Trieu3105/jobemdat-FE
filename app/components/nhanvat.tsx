@@ -9,7 +9,7 @@ export default function Nhanvat() {
         {/* Image + Description */}
         <div className="relative flex justify-center">
           {/* Right: image preview */}
-          <div className="relative w-full max-w-2xl h-auto z-10">
+          <div className="relative w-full max-w-2xl mx-auto h-auto z-10">
             <Image
               src="/image/icon/bow.webp"
               alt="Bow Weapon"
